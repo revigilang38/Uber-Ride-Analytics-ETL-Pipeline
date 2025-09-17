@@ -1,0 +1,86 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "uber_ride_data_validation",
+  "expectations": [
+    {
+      "expectation_type": "expect_column_values_to_be_unique",
+      "kwargs": {
+        "column": "unique_transaction_id"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "customer_rating",
+        "max_value": 5,
+        "min_value": 1
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_type_list",
+      "kwargs": {
+        "column": "ride_distance",
+        "type_list": [
+          "float",
+          "integer"
+        ]
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_mean_to_be_between",
+      "kwargs": {
+        "column": "ride_distance",
+        "max_value": 30,
+        "min_value": 1
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "booking_status",
+        "value_set": [
+          "Completed",
+          "Cancelled by Customer",
+          "Cancelled by Driver",
+          "No Driver Found",
+          "Incomplete",
+          "Pending",
+          "Scheduled",
+          "In Transit"
+        ]
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "driver_cancellation_reason",
+        "condition_list": [
+          {
+            "condition": "booking_status",
+            "op": "eq",
+            "value": "Cancelled by Driver"
+          }
+        ],
+        "mostly": 0.95
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_min_to_be_between",
+      "kwargs": {
+        "column": "booking_value",
+        "min_value": 0
+      },
+      "meta": {}
+    }
+  ],
+  "ge_cloud_id": null,
+  "meta": {
+    "great_expectations_version": "0.18.19"
+  }
+}
